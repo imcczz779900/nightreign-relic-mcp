@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout relic-affix-mcp
+        uses: actions/checkout@v4
+        with:
+          path: relic-affix-mcp
+
+      - name: Checkout Smithbox
+        uses: actions/checkout@v4
+        with:
+          repository: vawser/Smithbox
+          path: Smithbox
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Build Debug MCP
+        working-directory: relic-affix-mcp
+        run: dotnet build mcp\RelicAffix.Mcp.csproj -c Debug -p:SmithboxDir="${{ github.workspace }}\Smithbox"
+
+      - name: Build Release MCP
+        working-directory: relic-affix-mcp
+        run: dotnet build mcp\RelicAffix.Mcp.csproj -c Release -p:SmithboxDir="${{ github.workspace }}\Smithbox"
+
+      - name: Run safety tests
+        working-directory: relic-affix-mcp
+        env:
+          SMITHBOX_DIR: ${{ github.workspace }}\Smithbox
+        run: python test_safety.py

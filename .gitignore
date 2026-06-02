@@ -1,0 +1,27 @@
+# Build outputs
+bin/
+obj/
+**/bin/
+**/obj/
+
+# User/local files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Generated regulation outputs and ad-hoc test folders
+*.edited.bin
+*.edited.*.bin
+*.relic*.bin
+batchtest/
+mcp_apply_test.bin
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+Thumbs.db
+.DS_Store

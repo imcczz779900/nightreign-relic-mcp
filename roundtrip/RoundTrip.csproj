@@ -8,8 +8,9 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Configuration>Debug</Configuration>
     <Platforms>AnyCPU</Platforms>
+    <SmithboxDir Condition="'$(SmithboxDir)' == ''">..\..\Smithbox</SmithboxDir>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Smithbox\src\Andre\Andre.Formats\Andre.Formats.csproj" />
+    <ProjectReference Include="$(SmithboxDir)\src\Andre\Andre.Formats\Andre.Formats.csproj" />
   </ItemGroup>
 </Project>

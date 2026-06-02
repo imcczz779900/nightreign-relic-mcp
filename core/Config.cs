@@ -1,19 +1,19 @@
 namespace RelicAffix;
 
 /// <summary>
-/// Resolves the bundled PARAMDEF and row-name files. Defaults point at the Smithbox repo;
-/// override with the DEFS_DIR and ROWNAMES environment variables.
+/// Resolves the bundled PARAMDEF and row-name files. Environment variables can override
+/// the built-in assets when testing a different Smithbox data set.
 /// </summary>
 public static class Config
 {
-    private const string RepoDefs = @"C:\Users\32445\Desktop\Smithbox\src\Smithbox.Data\Assets\PARAM\NR\Defs";
-    private const string RepoRowNames = @"C:\Users\32445\Desktop\Smithbox\src\Smithbox.Data\Assets\PARAM\NR\Param Row Names\English\AttachEffectTableParam.json";
+    private static string AssetRoot => Path.Combine(AppContext.BaseDirectory, "Assets");
 
     public static string DefXml =>
-        Path.Combine(Environment.GetEnvironmentVariable("DEFS_DIR") ?? RepoDefs, "AttachEffectTableParam.xml");
+        Path.Combine(Environment.GetEnvironmentVariable("DEFS_DIR") ?? Path.Combine(AssetRoot, "Defs"),
+            "AttachEffectTableParam.xml");
 
     public static string RowNames =>
-        Environment.GetEnvironmentVariable("ROWNAMES") ?? RepoRowNames;
+        Environment.GetEnvironmentVariable("ROWNAMES") ?? Path.Combine(AssetRoot, "RowNames", "AttachEffectTableParam.json");
 }
 
 public static class Verifier

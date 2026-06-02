@@ -1,8 +1,14 @@
-import json, subprocess, sys, threading, queue, time
+import json, os, subprocess, sys, threading, queue, time
+from pathlib import Path
 
-DOTNET = r"C:\Program Files\dotnet\dotnet.exe"
-DLL = r"C:\Users\32445\Desktop\relic-affix-mcp\mcp\bin\Debug\net9.0\relic-affix-mcp.dll"
-REG = r"C:\Users\32445\Desktop\Smithbox\src\Smithbox.Data\Assets\PARAM\NR\Regulations\1.03.5 (10350000)\regulation.bin"
+ROOT = Path(__file__).resolve().parent
+DOTNET = os.environ.get("DOTNET", r"C:\Program Files\dotnet\dotnet.exe")
+DLL = os.environ.get("MCP_DLL", str(ROOT / "mcp" / "bin" / "Debug" / "net9.0" / "relic-affix-mcp.dll"))
+SMITHBOX_DIR = Path(os.environ.get("SMITHBOX_DIR", str(ROOT.parent / "Smithbox")))
+REG = os.environ.get(
+    "REGULATION_BIN",
+    str(SMITHBOX_DIR / "src" / "Smithbox.Data" / "Assets" / "PARAM" / "NR" / "Regulations" / "1.03.5 (10350000)" / "regulation.bin"),
+)
 
 p = subprocess.Popen([DOTNET, DLL], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                      stderr=subprocess.PIPE, text=True, encoding="utf-8", bufsize=1)
@@ -59,7 +65,7 @@ print(json.dumps(sc, ensure_ascii=False)[:900])
 
 # 5. apply_change
 ap = [n for n in names if "apply" in n.lower()][0]
-out = r"C:\Users\32445\Desktop\relic-affix-mcp\mcp_apply_test.bin"
+out = str(ROOT / "mcp_apply_test.bin")
 print(f"\n== {ap} (dlc, both, Vigor +1) -> {out} ==")
 res = call(ap, {"regulation":REG,"hasDlc":True,"relicType":"both","targets":["Vigor +1"],"outPath":out}, 5)
 sc = res.get("structuredContent", res)

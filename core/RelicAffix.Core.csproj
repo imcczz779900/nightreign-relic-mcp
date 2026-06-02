@@ -8,8 +8,9 @@
     <Configuration>Debug</Configuration>
     <Platforms>AnyCPU</Platforms>
     <RootNamespace>RelicAffix</RootNamespace>
+    <SmithboxDir Condition="'$(SmithboxDir)' == ''">..\..\Smithbox</SmithboxDir>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Smithbox\src\Andre\Andre.Formats\Andre.Formats.csproj" />
+    <ProjectReference Include="$(SmithboxDir)\src\Andre\Andre.Formats\Andre.Formats.csproj" />
   </ItemGroup>
 </Project>

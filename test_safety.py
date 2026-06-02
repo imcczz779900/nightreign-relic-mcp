@@ -10,12 +10,14 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-DOTNET = r"C:\Program Files\dotnet\dotnet.exe"
+DOTNET = os.environ.get("DOTNET", r"C:\Program Files\dotnet\dotnet.exe")
 APP = ROOT / "app" / "RelicAffix.csproj"
 MCP_DLL = ROOT / "mcp" / "bin" / "Debug" / "net9.0" / "relic-affix-mcp.dll"
-SOURCE_REG = Path(
-    r"C:\Users\32445\Desktop\Smithbox\src\Smithbox.Data\Assets\PARAM\NR\Regulations\1.03.5 (10350000)\regulation.bin"
-)
+SMITHBOX_DIR = Path(os.environ.get("SMITHBOX_DIR", str(ROOT.parent / "Smithbox")))
+SOURCE_REG = Path(os.environ.get(
+    "REGULATION_BIN",
+    str(SMITHBOX_DIR / "src" / "Smithbox.Data" / "Assets" / "PARAM" / "NR" / "Regulations" / "1.03.5 (10350000)" / "regulation.bin"),
+))
 
 
 def run_cli(*args):

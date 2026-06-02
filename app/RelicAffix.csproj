@@ -13,4 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\core\RelicAffix.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\core\Assets\**\*" Link="Assets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

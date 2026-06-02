@@ -1,9 +1,13 @@
-import json, subprocess, threading, queue, time
-DOTNET=r"C:\Program Files\dotnet\dotnet.exe"
-DLL=r"C:\Users\32445\Desktop\relic-affix-mcp\mcp\bin\Release\net9.0\relic-affix-mcp.dll"
-REG=r"C:\Users\32445\Desktop\Smithbox\regulation.bin"
-OUTDIR=r"C:\Users\32445\Desktop\relic-affix-mcp\batchtest"
-import os; os.makedirs(OUTDIR, exist_ok=True)
+import json, os, subprocess, threading, queue, time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+DOTNET = os.environ.get("DOTNET", r"C:\Program Files\dotnet\dotnet.exe")
+DLL = os.environ.get("MCP_DLL", str(ROOT / "mcp" / "bin" / "Release" / "net9.0" / "relic-affix-mcp.dll"))
+SMITHBOX_DIR = Path(os.environ.get("SMITHBOX_DIR", str(ROOT.parent / "Smithbox")))
+REG = os.environ.get("REGULATION_BIN", str(SMITHBOX_DIR / "regulation.bin"))
+OUTDIR = os.environ.get("OUTDIR", str(ROOT / "batchtest"))
+os.makedirs(OUTDIR, exist_ok=True)
 
 p=subprocess.Popen([DOTNET,DLL],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,encoding="utf-8",bufsize=1)
 q=queue.Queue()

@@ -153,8 +153,9 @@ relic-affix-mcp/
   dump/, roundtrip/         —— 早期验证工具（一次性，可留作参考）
 ```
 
-依赖 Smithbox repo 路径提供 PARAMDEF + 行名（`Config.cs`，可用 DEFS_DIR / ROWNAMES 环境变量覆盖）。
-仅当前机器路径硬编码；换机需改 `Config.cs` 或设环境变量。
+运行时默认使用项目内置的 PARAMDEF + 行名资源；`DEFS_DIR` / `ROWNAMES` 环境变量可覆盖为其他
+Smithbox 数据集。源码构建仍复用 Smithbox 的 `Andre.Formats`，可用 MSBuild 属性 `SmithboxDir`
+指向 Smithbox checkout。
 
 ---
 

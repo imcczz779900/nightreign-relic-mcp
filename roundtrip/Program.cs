@@ -5,7 +5,7 @@
 // re-encrypts to a NEW file, then re-decrypts that new file and verifies
 // the edit survived a full read->write->read cycle.
 //
-// Usage: RoundTrip <regulation.bin> <outPath>
+// Usage: RoundTrip <regulation.bin> <outPath> [paramdefXml]
 
 using Andre.Formats;
 using SoulsFormats;
@@ -13,15 +13,19 @@ using SoulsFormats;
 const string ParamName = "AttachEffectTableParam";
 const string ParamFile = "AttachEffectTableParam.param";
 const string DlcField = "chanceWeight_dlc";
-string defPath = @"C:\Users\32445\Desktop\Smithbox\src\Smithbox.Data\Assets\PARAM\NR\Defs\AttachEffectTableParam.xml";
+string defaultDefPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "core", "Assets", "Defs", "AttachEffectTableParam.xml"));
 
 // Test fixture: base-all-relics pool, targets shared across position tables.
 int[] scopeTables = { 100, 200, 300, 2000000, 2100000, 3000000 };
 int[] targets = { 7000000, 7000100, 7000200 };
 
-if (args.Length < 2) { Console.Error.WriteLine("Usage: RoundTrip <regulation.bin> <outPath>"); return 1; }
+if (args.Length < 2) { Console.Error.WriteLine("Usage: RoundTrip <regulation.bin> <outPath> [paramdefXml]"); return 1; }
 string regIn = args[0], outPath = args[1];
+string defPath = args.Length >= 3 && !string.IsNullOrWhiteSpace(args[2])
+    ? args[2]
+    : Environment.GetEnvironmentVariable("PARAMDEF_XML") ?? defaultDefPath;
 if (!File.Exists(regIn)) { Console.Error.WriteLine($"not found: {regIn}"); return 1; }
+if (!File.Exists(defPath)) { Console.Error.WriteLine($"paramdef not found: {defPath}"); return 1; }
 
 PARAMDEF def = PARAMDEF.XmlDeserialize(defPath, versionAware: true);
 

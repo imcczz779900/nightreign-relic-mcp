@@ -14,6 +14,9 @@
     <ProjectReference Include="..\core\RelicAffix.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\core\Assets\**\*" Link="Assets\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
     <PackageReference Include="ModelContextProtocol" Version="1.3.0" />
   </ItemGroup>

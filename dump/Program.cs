@@ -7,8 +7,8 @@
 //   Dump <regulation.bin> [defsDir] [id,id,id...]
 //
 //   regulation.bin : path to the Nightreign regulation.bin to inspect
-//   defsDir        : folder containing AttachEffectTableParam.xml PARAMDEF
-//                    (default: the Smithbox repo's NR Defs folder)
+//   defsDir        : folder containing AttachEffectTableParam.xml PARAMDEF.
+//                    Defaults to DEFS_DIR or ../core/Assets/Defs.
 //   ids            : comma-separated row IDs to dump
 //                    (default: the two preset pools)
 
@@ -18,7 +18,7 @@ using SoulsFormats;
 const string ParamName = "AttachEffectTableParam";
 const string ParamFile = "AttachEffectTableParam.param";
 
-string repoDefs = @"C:\Users\32445\Desktop\Smithbox\src\Smithbox.Data\Assets\PARAM\NR\Defs";
+string defaultDefs = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "core", "Assets", "Defs"));
 
 if (args.Length < 1)
 {
@@ -27,7 +27,9 @@ if (args.Length < 1)
 }
 
 string regPath = args[0];
-string defsDir = args.Length >= 2 && !string.IsNullOrWhiteSpace(args[1]) ? args[1] : repoDefs;
+string defsDir = args.Length >= 2 && !string.IsNullOrWhiteSpace(args[1])
+    ? args[1]
+    : Environment.GetEnvironmentVariable("DEFS_DIR") ?? defaultDefs;
 
 // Default: both preset pools combined (base all-relics + base/DLC all-relics).
 int[] defaultIds =
