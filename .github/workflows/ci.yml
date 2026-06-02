@@ -9,10 +9,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout relic-affix-mcp
+      - name: Checkout nightreign-relic-mcp
         uses: actions/checkout@v4
         with:
-          path: relic-affix-mcp
+          path: nightreign-relic-mcp
 
       - name: Checkout Smithbox
         uses: actions/checkout@v4
@@ -26,15 +26,15 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Build Debug MCP
-        working-directory: relic-affix-mcp
+        working-directory: nightreign-relic-mcp
         run: dotnet build mcp\RelicAffix.Mcp.csproj -c Debug -p:SmithboxDir="${{ github.workspace }}\Smithbox"
 
       - name: Build Release MCP
-        working-directory: relic-affix-mcp
+        working-directory: nightreign-relic-mcp
         run: dotnet build mcp\RelicAffix.Mcp.csproj -c Release -p:SmithboxDir="${{ github.workspace }}\Smithbox"
 
       - name: Run safety tests
-        working-directory: relic-affix-mcp
+        working-directory: nightreign-relic-mcp
         env:
           SMITHBOX_DIR: ${{ github.workspace }}\Smithbox
         run: python test_safety.py

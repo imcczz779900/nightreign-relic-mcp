@@ -139,17 +139,17 @@ scope 由**两个维度**决定，执行前都要问用户：①是否拥有 **D
    compute(multi-target) / apply / encrypt-to-new / self-check。
 3. **[✅ 完成] CLI**（`app/` → `relic-affix.exe`）：`list-pools` / `list-affixes` / `preview` / `apply`。
    在 vanilla 1.03.5 上 list/preview/apply+self-check 全过。
-4. **[✅ 完成] .NET MCP server**（`mcp/` → `relic-affix-mcp.exe`）：
+4. **[✅ 完成] .NET MCP server**（`mcp/` → `nightreign-relic-mcp.exe`）：
    `list_pools` / `list_affixes` / `preview_change` / `apply_change`。
    stdio JSON-RPC 冒烟测试通过（握手 / tools/list / 三个工具调用 / apply self-check=ok）。
 
 ## 8. 目录结构
 
 ```
-relic-affix-mcp/
+nightreign-relic-mcp/
   core/   RelicAffix.Core   —— 共享核心库（引用 Smithbox 的 Andre.Formats）
   app/    relic-affix.exe   —— CLI
-  mcp/    relic-affix-mcp.exe —— MCP server (stdio)
+  mcp/    nightreign-relic-mcp.exe —— MCP server (stdio)
   dump/, roundtrip/         —— 早期验证工具（一次性，可留作参考）
 ```
 

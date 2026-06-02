@@ -8,7 +8,7 @@
     <Configuration>Debug</Configuration>
     <Platforms>AnyCPU</Platforms>
     <RootNamespace>RelicAffix.Mcp</RootNamespace>
-    <AssemblyName>relic-affix-mcp</AssemblyName>
+    <AssemblyName>nightreign-relic-mcp</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\core\RelicAffix.Core.csproj" />

@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DOTNET = os.environ.get("DOTNET", r"C:\Program Files\dotnet\dotnet.exe")
 APP = ROOT / "app" / "RelicAffix.csproj"
-MCP_DLL = ROOT / "mcp" / "bin" / "Debug" / "net9.0" / "relic-affix-mcp.dll"
+MCP_DLL = ROOT / "mcp" / "bin" / "Debug" / "net9.0" / "nightreign-relic-mcp.dll"
 SMITHBOX_DIR = Path(os.environ.get("SMITHBOX_DIR", str(ROOT.parent / "Smithbox")))
 SOURCE_REG = Path(os.environ.get(
     "REGULATION_BIN",

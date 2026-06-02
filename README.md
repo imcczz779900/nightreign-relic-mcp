@@ -1,4 +1,4 @@
-# relic-affix-mcp
+# nightreign-relic-mcp
 
 Nightreign(NR) 遗物词条 Roll Weight 修改工具。它离线读取 `regulation.bin`，只修改
 `AttachEffectTableParam` 的 `chanceWeight_dlc` 字段：同一池内所有词条设为 `0`，目标词条设为
@@ -30,10 +30,10 @@ scope 由两个参数决定：是否有 DLC，以及遗物类型。
 
 ## Release Install
 
-从 GitHub Releases 下载发布 zip，解压后把 `relic-affix-mcp.exe` 配进 Claude Code：
+从 GitHub Releases 下载发布 zip，解压后把 `nightreign-relic-mcp.exe` 配进 Claude Code：
 
 ```powershell
-claude mcp add relic-affix -- "C:\path\to\relic-affix-mcp.exe"
+claude mcp add nightreign-relic -- "C:\path\to\nightreign-relic-mcp.exe"
 ```
 
 或者手动加入 MCP 配置：
@@ -41,8 +41,8 @@ claude mcp add relic-affix -- "C:\path\to\relic-affix-mcp.exe"
 ```json
 {
   "mcpServers": {
-    "relic-affix": {
-      "command": "C:\\path\\to\\relic-affix-mcp.exe"
+    "nightreign-relic": {
+      "command": "C:\\path\\to\\nightreign-relic-mcp.exe"
     }
   }
 }
@@ -79,7 +79,7 @@ relic-affix apply        "<regulation.bin>" dlc normal "<out.bin>" "Vigor +1"
 ```text
 Desktop/
   Smithbox/
-  relic-affix-mcp/
+  nightreign-relic-mcp/
 ```
 
 如果 Smithbox 在别处，构建时传 `SmithboxDir`：
