@@ -1,0 +1,301 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\roundtrip\\RoundTrip.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\roundtrip\\RoundTrip.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\roundtrip\\RoundTrip.csproj",
+        "projectName": "RoundTrip",
+        "projectPath": "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\roundtrip\\RoundTrip.csproj",
+        "packagesPath": "C:\\Users\\32445\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\roundtrip\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\32445\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Formats\\Andre.Formats.csproj": {
+                "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Formats\\Andre.Formats.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Core\\Andre.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Core\\Andre.Core.csproj",
+        "projectName": "Andre.Core",
+        "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Core\\Andre.Core.csproj",
+        "packagesPath": "C:\\Users\\32445\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\32445\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj": {
+                "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Formats\\Andre.Formats.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Formats\\Andre.Formats.csproj",
+        "projectName": "Andre.Formats",
+        "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Formats\\Andre.Formats.csproj",
+        "packagesPath": "C:\\Users\\32445\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Formats\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\32445\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Core\\Andre.Core.csproj": {
+                "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\Andre.Core\\Andre.Core.csproj"
+              },
+              "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj": {
+                "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj",
+        "projectName": "Andre.SoulsFormats",
+        "projectPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\Andre.SoulsFormats.csproj",
+        "packagesPath": "C:\\Users\\32445\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\32445\\Desktop\\Smithbox\\src\\Andre\\SoulsFormats\\SoulsFormats\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\32445\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "BouncyCastle.Cryptography": {
+              "target": "Package",
+              "version": "[2.6.2, )"
+            },
+            "CommunityToolkit.HighPerformance": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "DotNext.IO": {
+              "target": "Package",
+              "version": "[5.26.3, )"
+            },
+            "DotNext.Unsafe": {
+              "target": "Package",
+              "version": "[5.26.2, )"
+            },
+            "DrSwizzler": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
+            "ZstdNet": {
+              "target": "Package",
+              "version": "[1.5.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
