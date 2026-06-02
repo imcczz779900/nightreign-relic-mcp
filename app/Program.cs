@@ -56,10 +56,10 @@ try
                 foreach (var e in reg.EntriesForTable(table))
                 {
                     string key = e.BareName ?? e.AttachEffectId.ToString();
-                    if (!seen.Add(key)) continue;
                     if (query != null &&
                         !(e.Name?.Contains(query, StringComparison.OrdinalIgnoreCase) ?? false) &&
                         !e.AttachEffectId.ToString().Contains(query)) continue;
+                    if (!seen.Add(key)) continue;
                     Console.WriteLine($"{e.AttachEffectId,12}  {e.BaseWeight / 100.0,7:0.00}%  {e.DlcWeight,5}  {e.BareName}");
                 }
             foreach (var w in reg.Warnings) Console.WriteLine($"warn: {w}");

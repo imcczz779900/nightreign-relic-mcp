@@ -27,6 +27,7 @@ public sealed class RelicRegulation
     private readonly BND4 _bnd;
     private readonly BinderFile _paramFile;
     public Param Param { get; }
+    public string SourcePath { get; }
 
     /// <summary>table id -> ordered display names (from bundled row-name JSON).</summary>
     private readonly Dictionary<int, List<string>> _rowNames;
@@ -36,8 +37,9 @@ public sealed class RelicRegulation
 
     public List<string> Warnings { get; } = new();
 
-    private RelicRegulation(BND4 bnd, BinderFile paramFile, Param param, Dictionary<int, List<string>> rowNames)
+    private RelicRegulation(string sourcePath, BND4 bnd, BinderFile paramFile, Param param, Dictionary<int, List<string>> rowNames)
     {
+        SourcePath = Path.GetFullPath(sourcePath);
         _bnd = bnd;
         _paramFile = paramFile;
         Param = param;
@@ -66,7 +68,7 @@ public sealed class RelicRegulation
         param.ApplyParamdef(def, ulong.MaxValue, ParamName);
 
         var rowNames = LoadRowNames(rowNamesJsonPath);
-        return new RelicRegulation(bnd, file, param, rowNames);
+        return new RelicRegulation(regulationPath, bnd, file, param, rowNames);
     }
 
     private static Dictionary<int, List<string>> LoadRowNames(string path)
@@ -160,8 +162,16 @@ public sealed class RelicRegulation
     /// <summary>Re-pack the edited param and encrypt to a new regulation.bin. Never overwrites the source.</summary>
     public void SaveAs(string outPath)
     {
+        string fullOut = Path.GetFullPath(outPath);
+        if (string.Equals(fullOut, SourcePath, StringComparison.OrdinalIgnoreCase))
+            throw new IOException("Refusing to overwrite the source regulation.bin. Choose a different output path.");
+        if (File.Exists(fullOut))
+            throw new IOException($"Refusing to overwrite existing output file: {fullOut}");
+        string? dir = Path.GetDirectoryName(fullOut);
+        if (!string.IsNullOrEmpty(dir)) Directory.CreateDirectory(dir);
+
         _paramFile.Bytes = Param.Write();
         byte[] encrypted = SFUtil.EncryptNightreignRegulation(_bnd);
-        File.WriteAllBytes(outPath, encrypted);
+        File.WriteAllBytes(fullOut, encrypted);
     }
 }

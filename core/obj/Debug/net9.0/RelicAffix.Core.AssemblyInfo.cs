@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RelicAffix.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01d251e4be0396bad32f1ec82415eb6fd9c27c54")]
 [assembly: System.Reflection.AssemblyProductAttribute("RelicAffix.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RelicAffix.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

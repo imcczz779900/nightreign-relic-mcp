@@ -48,6 +48,7 @@ relic-affix apply        "<regulation.bin>" dlc   both   "<out.bin>" "Vigor +1" 
 `<dlc|nodlc>` = 是否有 DLC；`<normal|deep_night|both>` = 遗物类型。
 
 `apply` 写出新文件后会自检（重新解密读回校验），打印 `SELF-CHECK OK`。把输出文件手动替换你的 regulation.bin。
+如果目标词条名无法解析、目标在所选池内没有命中、输出路径等于输入文件、或输出文件已存在，工具会拒绝写入。
 
 ## MCP 工具
 
@@ -67,7 +68,7 @@ relic-affix apply        "<regulation.bin>" dlc   both   "<out.bin>" "Vigor +1" 
 注册到 Claude Code：
 
 ```powershell
-claude mcp add relic-affix -- "C:\Users\32445\Desktop\relic-affix-mcp\mcp\bin\Debug\net9.0\relic-affix-mcp.exe"
+claude mcp add relic-affix -- "C:\Users\32445\Desktop\relic-affix-mcp\mcp\bin\Release\net9.0\relic-affix-mcp.exe"
 ```
 
 或在 MCP 配置 JSON 里加：
@@ -76,7 +77,7 @@ claude mcp add relic-affix -- "C:\Users\32445\Desktop\relic-affix-mcp\mcp\bin\De
 {
   "mcpServers": {
     "relic-affix": {
-      "command": "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\mcp\\bin\\Debug\\net9.0\\relic-affix-mcp.exe"
+      "command": "C:\\Users\\32445\\Desktop\\relic-affix-mcp\\mcp\\bin\\Release\\net9.0\\relic-affix-mcp.exe"
     }
   }
 }

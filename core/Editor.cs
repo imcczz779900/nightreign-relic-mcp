@@ -44,10 +44,12 @@ public sealed record ForceReport(
     IReadOnlyList<string> Targets,
     IReadOnlyList<TableReport> Tables,
     IReadOnlyList<HitInfo> Hits,
-    IReadOnlyList<string> Warnings)
+    IReadOnlyList<string> Warnings,
+    IReadOnlyList<string> Errors)
 {
     public int TotalZeroed => Tables.Sum(t => t.EntriesZeroed);
     public int TotalMinusOne => Hits.Count;
+    public bool CanApply => Errors.Count == 0;
 }
 
 public static class WeightEditor
@@ -59,14 +61,25 @@ public static class WeightEditor
     /// </summary>
     public static ForceReport ForceTargets(RelicRegulation reg, Pool pool, IReadOnlyList<string> rawTargets, bool apply)
     {
-        var targets = rawTargets.Select(t => ResolvedTarget.Resolve(t, reg)).ToList();
+        rawTargets ??= Array.Empty<string>();
+        var cleanTargets = rawTargets.Select(t => t.Trim()).Where(t => t.Length > 0).ToList();
+        var targets = cleanTargets.Select(t => ResolvedTarget.Resolve(t, reg)).ToList();
         var hits = new List<HitInfo>();
         var tableReports = new List<TableReport>();
         var warnings = new List<string>();
+        var errors = new List<string>();
+        var tablesToZero = new Dictionary<int, int>();
+        var targetRows = new List<(int TableId, int Index)>();
+
+        if (cleanTargets.Count == 0)
+            errors.Add("Provide at least one target affix name or attachEffectId.");
 
         foreach (var t in targets.Where(t => t.UnresolvedName != null))
+        {
             warnings.Add($"target \"{t.UnresolvedName}\": no affix with that name found; cannot resolve to an attachEffectId. " +
                          "Use the exact name (see list_affixes) or an attachEffectId number.");
+            errors.Add($"target \"{t.UnresolvedName}\": unresolved affix name.");
+        }
 
         foreach (int table in pool.Tables)
         {
@@ -80,14 +93,13 @@ public static class WeightEditor
 
             if (reg.NameMisalignment(table) is string mis) warnings.Add(mis);
 
-            if (apply)
-                for (int i = 0; i < entries.Count; i++) reg.SetDlc(table, i, 0);
+            tablesToZero[table] = entries.Count;
 
             foreach (var t in targets)
                 foreach (var e in entries.Where(t.Matches))
                 {
-                    if (apply) reg.SetDlc(table, e.IndexInTable, -1);
                     hits.Add(new HitInfo(table, e.IndexInTable, e.AttachEffectId, e.Name, e.DlcWeight, e.BaseWeight));
+                    targetRows.Add((table, e.IndexInTable));
                     if (e.BaseWeight == 0)
                         warnings.Add($"table {table} attachEffId {e.AttachEffectId} ({RelicRegulation.StripPrefixSafe(e.Name)}): " +
                                      "base weight is 0, so dlc=-1 falls back to 0 and it will NOT roll here " +
@@ -101,7 +113,10 @@ public static class WeightEditor
         {
             var coveredTables = pool.Tables.Where(tb => reg.EntriesForTable(tb).Any(t.Matches)).ToList();
             if (coveredTables.Count == 0)
+            {
                 warnings.Add($"target {t}: matched NO entry in any table of pool '{pool.Id}'.");
+                errors.Add($"target {t}: matched no entry in pool '{pool.Id}'.");
+            }
             else
             {
                 var missing = pool.Tables.Except(coveredTables).ToList();
@@ -110,6 +125,18 @@ public static class WeightEditor
             }
         }
 
-        return new ForceReport(pool.Id, rawTargets, tableReports, hits, warnings.Distinct().ToList());
+        if (apply)
+        {
+            if (errors.Count > 0)
+                throw new InvalidOperationException("Refusing to write because the requested edit is invalid: " + string.Join(" ", errors.Distinct()));
+
+            foreach (var entry in tablesToZero)
+                for (int i = 0; i < entry.Value; i++) reg.SetDlc(entry.Key, i, 0);
+
+            foreach (var row in targetRows)
+                reg.SetDlc(row.TableId, row.Index, -1);
+        }
+
+        return new ForceReport(pool.Id, cleanTargets, tableReports, hits, warnings.Distinct().ToList(), errors.Distinct().ToList());
     }
 }

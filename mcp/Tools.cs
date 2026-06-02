@@ -38,10 +38,10 @@ public static class RelicAffixTools
             foreach (var e in reg.EntriesForTable(table))
             {
                 string key = e.BareName ?? e.AttachEffectId.ToString();
-                if (!seen.Add(key)) continue;
                 if (query != null
                     && !(e.Name?.Contains(query, StringComparison.OrdinalIgnoreCase) ?? false)
                     && !e.AttachEffectId.ToString().Contains(query)) continue;
+                if (!seen.Add(key)) continue;
                 affixes.Add(new
                 {
                     attachEffectId = e.AttachEffectId,
@@ -121,6 +121,16 @@ public static class RelicAffixTools
         var pool = Pools.Resolve(hasDlc, Pools.ParseType(relicType));
         string stem = Path.GetFileNameWithoutExtension(regulation);
         string dir = outDir ?? Path.GetDirectoryName(Path.GetFullPath(regulation))!;
+        Directory.CreateDirectory(dir);
+
+        var plannedOutputs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        for (int i = 0; i < relics.Length; i++)
+        {
+            string label = Sanitize(string.IsNullOrWhiteSpace(relics[i].Name) ? $"relic{i + 1}" : relics[i].Name!);
+            string planned = Path.GetFullPath(Path.Combine(dir, $"{stem}.{label}.bin"));
+            if (!plannedOutputs.Add(planned))
+                throw new ArgumentException($"Duplicate relic output path after sanitizing names: {planned}");
+        }
 
         var results = new List<object>();
         for (int i = 0; i < relics.Length; i++)
@@ -152,6 +162,7 @@ public static class RelicAffixTools
         outputPath = outPath,
         selfCheck,
         summary = new { entriesZeroed = r.TotalZeroed, targetRowsSetToMinus1 = r.TotalMinusOne },
+        canApply = r.CanApply,
         tables = r.Tables.Select(t => new
         {
             tableId = t.TableId,
@@ -170,7 +181,8 @@ public static class RelicAffixTools
             oldDlcWeight = h.OldDlc,
             newDlcWeight = -1
         }),
-        warnings = r.Warnings
+        warnings = r.Warnings,
+        errors = r.Errors
     };
 }
 
