@@ -59,6 +59,17 @@ claude mcp add nightreign-relic -- "C:\path\to\nightreign-relic-mcp.exe"
 `targets` 可以是词条名，如 `Vigor +1`，也可以是 `attachEffectId` 数字。多个不同遗物请用
 `apply_relics`，它会为每个遗物生成一个独立 bin；不要把多套遗物词条混到同一个 bin。
 
+## Build a relic template
+
+推荐先用 [黑夜君临小助手](https://elden.dingdangmarket.com/) 构建自己的遗物词条模板。
+该站点提供词条合法性检查、热门遗物组合、词条浏览和遗物配装等功能。
+
+推荐流程：
+
+1. 在网站里选择/检查想要的三条遗物词条。
+2. 确认组合合法后，把构建好的模板截图发给 AI。
+3. AI 根据截图识别词条名称，并调用本 MCP 的 `preview_change` / `apply_change` / `apply_relics` 生成对应的 `regulation.bin` 输出文件。
+
 ## CLI
 
 构建后也可以直接用命令行工具：
