@@ -73,7 +73,8 @@ relic-affix apply        "<regulation.bin>" dlc normal "<out.bin>" "Vigor +1"
 
 ## Build From Source
 
-源码复用 Smithbox 的 `Andre.Formats` / `SoulsFormats`。默认假设目录结构如下：
+源码复用 [Smithbox](https://github.com/vawser/Smithbox) 的 `Andre.Formats` / `SoulsFormats`。
+默认假设目录结构如下：
 
 ```text
 Desktop/
@@ -107,4 +108,8 @@ CI 会在 Windows 上 checkout Smithbox、构建 Debug/Release，并运行安全
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+This project is MIT licensed. See [LICENSE](LICENSE).
+
+This project is based on and depends on [vawser/Smithbox](https://github.com/vawser/Smithbox),
+which is also MIT licensed. Smithbox attribution and license text are included in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
